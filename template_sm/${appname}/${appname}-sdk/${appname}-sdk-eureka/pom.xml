@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>cn.utrust.fintech.${appname}</groupId>
+		<artifactId>${appname}-sdk</artifactId>
+		<version>${projectVersion}</version>
+	</parent>
+    <groupId>cn.utrust.fintech.${appname}.sdk</groupId>
+	<artifactId>${appname}-sdk-eureka</artifactId>
+	<name>sdk-eureka</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<fintech.version>${fintechVersion}</fintech.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>cn.utrust.fintech.${appname}</groupId>
+			<artifactId>${appname}-dto</artifactId>
+			<#noparse><version>${project.version}</version></#noparse>
+		</dependency>
+		<dependency>
+			<groupId>cn.utrust.fintech</groupId>
+			<artifactId>eureka-config</artifactId>
+			<#noparse><version>${fintech.version}</version></#noparse>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>
+						spring-boot-starter-data-jpa
+					</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+        </dependency>
+    </dependencies>
+</project>

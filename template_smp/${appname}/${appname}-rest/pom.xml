@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.utrust.fintech.${appname}</groupId>
+        <artifactId>${appname}</artifactId>
+        <version>${projectVersion}</version>
+    </parent>
+
+    <artifactId>${appname}-rest</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${appname}-rest</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+		<dependency>
+            <#noparse><groupId>${project.groupId}</groupId></#noparse>
+            <artifactId>${appname}-service</artifactId>
+			<#noparse><version>${project.version}</version></#noparse>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <#noparse><outputDirectory>${project.build.outputDirectory}</outputDirectory></#noparse>
+                            <resources>
+                                <resource>
+                                    <!-- 指定环境资源文件 -->
+                                    <#noparse><directory>src/main/resources/${profiles.active}</directory></#noparse>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                            <mainClass>cn.utrust.fintech.cmisadmin.CmisAdminApp</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <#noparse><outputDirectory>${project.build.outputDirectory}</outputDirectory></#noparse>
+                            <!-- 待处理的资源定义 -->
+                            <resources>
+                                <resource>
+                                    <!-- 指定resources插件处理哪个目录下的资源文件 -->
+                                    <#noparse><directory>src/main/resources/${profiles.active}</directory></#noparse>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

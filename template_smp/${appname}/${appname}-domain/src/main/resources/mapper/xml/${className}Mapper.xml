@@ -1,0 +1,84 @@
+<#include "/macro.include"/>
+<#assign className = table.className>   
+<#assign classNameFirstLower = table.classNameFirstLower>  
+<#assign indexs = table.indexs> 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro namespace>${className}.</#macro>
+
+<mapper namespace="${basepackage}.domain.mapper.${className}Mapper">
+	<resultMap id="${className}" type="${basepackage}.domain.entity.${className}">	
+	    <#list table.compositeIdColumns as column>
+        <id property="${column.columnNameLower}" column="${column.sqlName}" />
+		</#list>
+        <#list table.notPkColumns as column>   	
+        <result property="${column.columnNameLower}" column="${column.sqlName}"/>
+		</#list>
+	</resultMap>
+	
+	<sql id="columns">
+		<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>
+	</sql>
+	<sql id="dynamicWhere">			
+	       <#list table.columns as column>
+	       <#if column.isDateTimeColumn && column.columnNameFirstLower != "updateTime">
+	       <if test="${column.columnNameFirstLower}Begin != null">AND ${column.sqlName} >= <@mapperEl column.columnNameFirstLower+"Begin"/></if>
+		   <if test="${column.columnNameFirstLower}End != null">AND ${column.sqlName} &lt;= <@mapperEl column.columnNameFirstLower+"End"/></if>
+	       <#else>
+	       <if test="${column.columnNameFirstLower} != null">AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower/></if>
+	       </#if>
+	       </#list>
+	</sql>
+    <update id="patchUpdate" parameterType="${basepackage}.domain.entity.${className}">
+        UPDATE ${table.sqlName}
+        <set>
+            <#list table.notPkColumns as column>
+            <#if column.columnNameFirstLower != "updateTime" && column.columnNameFirstLower != "createTime">
+            <if test="${column.columnNameFirstLower} != null">${column.sqlName} = <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if></if>
+            </#if>
+            </#list>
+        </set>
+        WHERE
+            <#list table.compositeIdColumns as column>
+            ${column.sqlName} = <@mapperEl column.columnNameLower/><#if column_has_next> AND </#if>
+            </#list>
+    </update>
+    <#list indexs as index>
+    <#if !index.columns[0].pk>
+	<select id="getBy<#list index.columns as column><#if column_index gt 0>And</#if>${column.columnName}</#list>" resultMap="${className}">
+        SELECT <include refid="columns"/>
+        FROM ${table.sqlName}
+        WHERE<#list index.columns as column><#if column_index gt 0> AND</#if> ${column.sqlName} = <@mapperEl column.columnNameFirstLower/></#list>
+    </select>
+    </#if>
+    <#if index.unique>
+    <select id="findBy<#list index.columns as column><#if column_index gt 0>And</#if>${column.columnName}</#list>" resultMap="${className}">
+        SELECT <include refid="columns"/>
+        FROM ${table.sqlName}
+        WHERE<#list index.columns as column><#if column_index gt 0> AND</#if> ${column.sqlName} = <@mapperEl column.columnNameFirstLower/></#list>
+    </select>
+    <#if !index.columns[0].pk>
+    <delete id="delBy<#list index.columns as column><#if column_index gt 0>And</#if>${column.columnName}</#list>">
+        DELETE FROM ${table.sqlName}
+        WHERE<#list index.columns as column><#if column_index gt 0> AND</#if> ${column.sqlName} = <@mapperEl column.columnNameFirstLower/></#list>
+    </delete>
+    </#if>
+    </#if>
+    </#list>
+	<select id="getAll" resultMap="${className}">
+		SELECT <include refid="columns"/>
+		FROM ${table.sqlName}   
+		<where>
+		<include refid="dynamicWhere" />
+		</where>
+		<if test="orderField != null">
+		order by <@mapperEl '${orderField}'/> <@mapperEl '${orderSeq}'/>
+		</if>
+		<if test="orderField == null">
+		order by <#list table.compositeIdColumns as column>${column.sqlName}</#list>  desc
+		</if>
+	</select>
+</mapper>
+

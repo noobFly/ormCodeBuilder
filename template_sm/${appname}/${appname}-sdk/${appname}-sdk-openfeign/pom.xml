@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.utrust.fintech.${appname}.sdk</groupId>
+    <artifactId>${appname}-sdk-openfeign</artifactId>
+    <version>${projectVersion}</version>
+    <packaging>jar</packaging>
+
+    <name>${appname}-sdk-openfeign</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-core</artifactId>
+            <version>9.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-jackson</artifactId>
+            <version>9.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.utrust.fintech</groupId>
+            <artifactId>openfeign-proxy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.utrust.fintech.${appname}</groupId>
+            <artifactId>${appname}-dto</artifactId>
+            <version>${projectVersion}</version>
+        </dependency>
+    </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://47.52.36.122:8081/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://47.52.36.122:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>public</id>
+            <name>Public Repositories</name>
+            <url>http://120.25.223.27:8081/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+</project>
