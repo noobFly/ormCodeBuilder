@@ -21,13 +21,15 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import ${basepackage}.domain.Initializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class ${className} extends Initializable{
-    /**  分布式锁建前缀 */
-    public static final String KEY_PREFIX = "${className}_";
+@ApiModel("")
+public class ${className} {
+
 	//columns START
 	<#list table.columns as column>
 	/** ${column.columnAlias} */
@@ -43,7 +45,8 @@ public class ${className} extends Initializable{
     <#if column.columnNameFirstLower == "updateTime" || column.columnNameFirstLower == "createTime">
     @TableField(insertStrategy = FieldStrategy.NEVER, updateStrategy = FieldStrategy.NEVER)
     </#if>
-	private ${column.javaType?replace("java.lang.","")} ${column.columnNameLower};
+   @ApiModelProperty(value = "${column.columnAlias}")
+   private ${column.javaType?replace("java.lang.","")} ${column.columnNameLower};
 	</#list>
 	//columns END
 
