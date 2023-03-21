@@ -25,6 +25,6 @@
         <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT"></appender-ref>
     </root>
-    <logger name="cn.utrust.fintech" level="DEBUG" />
-    <logger name="cn.utrust.fintech.framework.rest.AutoWrapperRequestResponseBodyMethodProcessor" level="INFO" />
+    <logger name="cn.noob" level="DEBUG" />
+    <logger name="cn.noob.framework.rest.AutoWrapperRequestResponseBodyMethodProcessor" level="INFO" />
 </configuration>

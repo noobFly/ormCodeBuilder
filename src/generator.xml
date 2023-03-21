@@ -7,7 +7,7 @@
 		2.可以引用环境变量: ${env.JAVA_HOME} or System.properties: ${user.home},property之间也可以相互引用
 	</comment>
 	
-	<entry key="basepackage">cn.utrust.dao.mapper</entry>
+	<entry key="basepackage">cn.noob.biz.mapper</entry>
 	<entry key="appname">trusts</entry>
     <entry key="projectVersion">1.0.0</entry> <!-- 当前工程的版本 -->
     <entry key="fintechVersion">2.0.0</entry> <!-- fintech根项目版本 -->
@@ -53,31 +53,17 @@
 <!--    <entry key="jdbc.username">root</entry> -->
 <!--    <entry key="jdbc.password">123456</entry> -->
 	
-    <entry key="jdbc.url">jdbc:mysql://100.98.1.113:63307/grinscredit?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;useSSL=false&amp;useAffectedRows=true&amp;serverTimezone=Asia/Shanghai</entry>
+    <entry key="jdbc.url">jdbc:mysql://121.0.0.1:3306/noob-test?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;useSSL=false&amp;useAffectedRows=true&amp;serverTimezone=Asia/Shanghai</entry>
     <entry key="jdbc.driver">com.mysql.jdbc.Driver</entry>
 
-    <entry key="jdbc.username">gr_ykjc</entry>
-    <entry key="jdbc.password">Rzxlszy1949</entry>
+    <entry key="jdbc.username">noob</entry>
+    <entry key="jdbc.password">noob</entry>
 
 	<!-- Oracle 	jdbc:oracle:oci:@tnsname_devdb
-	<entry key="jdbc.url">jdbc:oracle:thin:@192.168.0.177:1521:[sid]</entry>
+	<entry key="jdbc.url">jdbc:oracle:thin:@121.0.0.1:1521:[sid]</entry>
 	<entry key="jdbc.driver">oracle.jdbc.driver.OracleDriver</entry>
 	-->
-	
-	<!-- SQLServer2000 
-	<entry key="jdbc.url">jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=[database]</entry>
-	<entry key="jdbc.driver">com.microsoft.jdbc.sqlserver.SQLServerDriver</entry>
-	-->
-	
-	<!-- SQLServer2005 
-	<entry key="jdbc.url">jdbc:sqlserver://192.168.0.98:1433;DatabaseName=[database]</entry>
-	<entry key="jdbc.driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
-	-->
 
-	<!-- JTDs for SQLServer 
-	<entry key="jdbc.url">jdbc:jtds:sqlserver://192.168.0.102:1433/[database];tds=8.0;lastupdatecount=true</entry>
-	<entry key="jdbc.driver">net.sourceforge.jtds.jdbc.Driver</entry>
-	-->
 
 	<!-- PostgreSql
 	<entry key="jdbc.url">jdbc:postgresql://localhost/[database]</entry>

@@ -13,15 +13,15 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 
-import cn.utrust.fintech.framework.RestAppConfig;
-import cn.utrust.fintech.framework.config.DefaultRedisConfiguration;
-import cn.utrust.fintech.framework.rest.AutoWrapperResponseBodyConfiguration;
-import cn.utrust.fintech.framework.security.authz.interceptor.AuthzInterceptor;
-import cn.utrust.fintech.framework.util.AppUtil;
-import cn.utrust.fintech.mybatis.assist.MybatisExtConfiguration;
+import cn.noob.framework.RestAppConfig;
+import cn.noob.framework.config.DefaultRedisConfiguration;
+import cn.noob.framework.rest.AutoWrapperResponseBodyConfiguration;
+import cn.noob.framework.security.authz.interceptor.AuthzInterceptor;
+import cn.noob.framework.util.AppUtil;
+import cn.noob.mybatis.assist.MybatisExtConfiguration;
 
 @SpringBootApplication
-@ComponentScan(value={"cn.utrust.fintech"})
+@ComponentScan(value={"cn.noob"})
 @EntityScan(basePackages={"${basepackage}.domain"})
 @Import({AutoWrapperResponseBodyConfiguration.class, DefaultRedisConfiguration.class, MybatisExtConfiguration.class})
 @EnableCaching

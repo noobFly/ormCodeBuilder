@@ -13,7 +13,7 @@ public class GeneratorMain {
 //		g.printAllTableNames();				//打印全部表名
 		
 		g.deleteOutRootDir();							//删除输出目录
-		g.generateByTable("credit_report_apply","template_smp");	//单表生成及使用的模板，使用*表示所有表，指定多个表可以用逗号隔开多个表名
+		g.generateByTable("data_source_config","template_smp");	//单表生成及使用的模板，使用*表示所有表，指定多个表可以用逗号隔开多个表名
 //		g.generateByAllTable("template_sm");	//使用模板生成所有表
 //		g.generateByClass(Blog.class,"template_clazz");
 		

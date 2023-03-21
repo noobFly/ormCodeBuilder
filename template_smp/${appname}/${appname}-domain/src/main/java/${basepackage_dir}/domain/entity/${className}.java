@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel("")
+@ApiModel("${table.tableAlias} ${table.sqlName}")
 public class ${className} {
 
 	//columns START
@@ -50,14 +50,4 @@ public class ${className} {
 	</#list>
 	//columns END
 
-    @Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this,ToStringStyle.MULTI_LINE_STYLE);
-	}
-    
-    @Override
-    public void init() {
-        super.init();
-        //后面可修改初始化默认值
-    }
 }

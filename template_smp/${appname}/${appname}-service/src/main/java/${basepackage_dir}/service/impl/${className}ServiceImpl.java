@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import ${basepackage}.domain.mapper.${className}Mapper;
 import ${basepackage}.service.${className}Service;
 
-import cn.utrust.fintech.framework.PageDto;
+import cn.noob.framework.PageDto;
 
 import ${basepackage}.domain.entity.${className};
 import ${basepackage}.dto.${className}DTO;

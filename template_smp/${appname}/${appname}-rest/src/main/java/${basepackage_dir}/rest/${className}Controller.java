@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ${basepackage}.service.${className}Service;
 import ${basepackage}.domain.entity.${className};
 import ${basepackage}.dto.${className}DTO;
-import cn.utrust.fintech.framework.PageDto;
+import cn.noob.framework.PageDto;
 
 /**
  * ${tableAlias} 控制器
