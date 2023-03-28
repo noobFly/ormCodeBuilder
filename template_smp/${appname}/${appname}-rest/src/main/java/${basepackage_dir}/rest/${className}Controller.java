@@ -31,7 +31,7 @@ import cn.noob.framework.PageDto;
 @RequestMapping("/${flClassName}")
 @RestController
 @Validated
-@Api("${tableAlias}接口文档")
+@Api(tags = "${tableAlias}接口文档")
 public class ${className}Controller{
     @Autowired
     private ${className}Service ${flClassName}Service;
